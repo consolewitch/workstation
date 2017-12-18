@@ -3,7 +3,7 @@
   easy_install:
     name: pip
     state: latest
-  when: ansible_distribution in ['Ubuntu', 'Centos' ]
+  when: ansible_distribution in ['Debian', 'Ubuntu', 'Centos' ]
 
 - name: "Install ansible with pip"
   pip:
@@ -12,4 +12,4 @@
   with-items:
   - ansible
   - pyvmomi
-  when: ansible_distribution in ['Ubuntu', 'Centos' ]
+  when: ansible_distribution in ['Debian', 'Ubuntu', 'Centos' ]
