@@ -73,29 +73,7 @@ esac
 
 
 ### call ansible
-export ANSIBLE_HOST_KEY_CHECKING=false #prevent ansible from hanging on yes/no prompt to accept a new host's fingerprint
-ansible-playbook -i "127.0.0.1," ../ansible/site.yaml -t ${TAGS} \
---extra-vars=" \
-jenkins_api_token=${JENKINS_API_TOKEN} \
-jenkins_api_user=${JENKINS_API_USER} \
-jenkins_node_name=${JENKINS_NODE_NAME} \
-vcenter_password=${VCENTER_PASSWORD} \
-vcenter_username=${VCENTER_USERNAME} \
-jenkins_executors_count=${JENKINS_EXECUTORS_COUNT} \
-jenkins_master_fqdn=${JENKINS_MASTER_FQDN} \
-jenkins_master_ip=${JENKINS_MASTER_IP} \
-jenkins_master_url=${JENKINS_MASTER_URL} \
-jenkins_node_credentials_id=${JENKINS_NODE_CREDENTIALS_ID} \
-jenkins_node_labels=\"${JENKINS_NODE_LABELS}\" \
-jenkins_node_username=${JENKINS_NODE_USERNAME} \
-vcenter_server=${VCENTER_SERVER} \
-cpu_count=${CPU_COUNT} \
-datacenter_name=${DATACENTER_NAME} \
-datastore_name=${DATASTORE_NAME} \
-vm_disk_gb=${VM_DISK_GB} \
-guest_hostname=${GUEST_HOSTNAME} \
-vm_guest_private_key=${VM_GUEST_PRIVATE_KEY}
-vm_guest_username=${VM_GUEST_USERNAME} \
-vm_ram_mb=${VM_RAM_MB} \
-vm_template_name=${VM_TEMPLATE_NAME} \
-" $@
+#export ANSIBLE_HOST_KEY_CHECKING=false
+#ansible-playbook -i "127.0.0.1," ../ansible/site.yaml -t ${TAGS} \
+#--extra-vars=" \
+#" $@
