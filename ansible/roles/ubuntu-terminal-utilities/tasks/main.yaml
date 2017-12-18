@@ -1,0 +1,16 @@
+---
+
+- name: "install tools"
+  apt: 
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  with_items:
+  - irssi
+  - nmap
+  - vim
+  - links 
+  - screen
+  - tmux
+  - jq
+  - dhcpdump

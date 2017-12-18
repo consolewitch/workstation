@@ -1,0 +1,13 @@
+---
+- name: "install tools that require gui"
+  apt: name={{ item }} state=present update_cache=true
+  with_items:
+  - inkscape
+  - terminator
+  tags:
+  - gui
+
+- name: "install chrome"
+  include: chrome.yml
+  tags: 
+  - gui

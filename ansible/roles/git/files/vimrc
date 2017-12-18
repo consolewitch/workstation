@@ -1,0 +1,44 @@
+" Show line numbers
+set number
+
+" Set NPC analogues for set list
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
+" Deal with word wrapping
+set linebreak
+set showbreak=+++
+set textwidth=0
+set wrapmargin=0
+
+" Set tab to 4 true spaces
+:set tabstop=4
+:set shiftwidth=4
+:set expandtab
+
+" General
+set showmatch
+set hlsearch
+set smartcase
+set ignorecase
+set incsearch
+set autoindent
+set shiftwidth=4
+set smartindent
+set smarttab
+set softtabstop=4
+set scrolloff=4
+
+
+" Advanced
+set ruler
+set undolevels=1000
+set backspace=indent,eol,start
+
+" Backup and Swap
+set backup
+set backupdir=~/.vim/backup
+set dir=~/.vim/swap
+
+" Turn on crosshairs 
+set cursorline
+set cursorcolumn

@@ -1,0 +1,12 @@
+---
+- name: "Install latest python with homebrew"
+  homebrew:
+    name: python
+    state: latest
+
+- name: "Install needed python libraries"
+  pip:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - jenkinsapi

@@ -1,0 +1,7 @@
+---
+- name: "install kubernetes development tools"
+  homebrew_cask:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - minikube

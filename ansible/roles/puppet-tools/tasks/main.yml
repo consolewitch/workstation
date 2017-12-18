@@ -1,0 +1,18 @@
+---
+- name: "Install sementic_puppet 0.1.0"
+  gem:
+    name: semantic_puppet
+    state: present 
+    version: 0.1.0
+    user_install: yes
+
+- name: "Install puppet related gems"
+  gem:
+    name: "{{ item }}"
+    state: latest
+    user_install: yes
+  with_items:
+    - puppet_forge
+    - r10k
+
+

@@ -1,0 +1,35 @@
+---
+- name: "Install command line utilities"
+  homebrew:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - dhcpdump
+    - git
+    - jq
+    - links 
+    - nmap
+    - screen
+    - tmux
+    - tree
+    - wget
+
+- name: "install GUI software"
+  homebrew_cask:
+    name: "{{ item }}" 
+    state: installed 
+  with_items:
+    - firefox
+    - karabiner-elements
+    - libreoffice
+    - slack
+    - synergy
+    - virtualbox
+    - vmware-remote-console
+
+- name: "Install pip-specific utilities and libraries"
+  pip:
+    name: "{{ item }}"
+    executable: "/usr/local/opt/python/libexec/bin/pip"
+  with_items:
+    - ansible-container

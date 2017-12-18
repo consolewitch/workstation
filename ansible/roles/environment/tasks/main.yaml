@@ -1,0 +1,33 @@
+---
+- name: "install secondary bashrc"
+  copy: src=bashrc dest=/Users/{{ ansible_user_id }}/.bashrc-{{ ansible_user_id }}
+
+- name: "link secondary bashrc to the main"
+  lineinfile: 
+    line: "[[ -r ~/.bashrc-{{ ansible_user_id }} ]] && source ~/.bashrc-{{ ansible_user_id }}"
+    insertafter: EOF
+    path: /Users/{{ ansible_user_id }}/.bash_profile
+    create: yes
+    state: present
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0644
+
+- name: "install the user's .vimrc"
+  copy: 
+    src: vimrc
+    dest: /Users/{{ ansible_user_id }}/.vimrc
+    owner: "{{ ansible_user_id }}"
+    group: staff
+    mode: 0644
+
+- name: "create directories for vim temp files"
+  file: dest={{ item }} state=directory
+  with_items: 
+  - /Users/{{ ansible_user_id }}/.vim/backup
+  - /Users/{{ ansible_user_id }}/.vim/swap
+
+- name: "Create working directory"
+  file: dest={{ item }} state=directory
+  with_items:
+  - /Users/{{ ansible_user_id }}/workspace
