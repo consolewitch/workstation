@@ -1,4 +1,9 @@
 ---
+- name: "install ansible config file"
+  copy:
+    src: ansible.cfg
+    dest: /Users/{{ ansible_user_id }}/.ansible.cfg
+
 - name: "install secondary bashrc"
   copy: src=bashrc dest=/Users/{{ ansible_user_id }}/.bashrc-{{ ansible_user_id }}
 

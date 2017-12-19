@@ -1,11 +1,11 @@
 {
-	"builders": [{
-		"type": "docker",
-		"image": "python",
-		"export_path": "ops-env.tar"
-	}],
-	"provisioners": [{
-		"type": "ansible",
-		"playbook_file": "../ansible/packer.yaml"
-	}]
+    "builders": [{
+        "type": "docker",
+        "image": "python:2.7.14-jessie",
+        "export_path": "ops-env.tar"
+    }],
+    "provisioners": [{
+        "type": "ansible",
+        "playbook_file": "../ansible/packer.yaml"
+    }]
 }

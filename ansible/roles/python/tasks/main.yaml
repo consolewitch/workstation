@@ -1,12 +1,12 @@
 ---
 - name: "Install latest python with homebrew"
   homebrew:
-    name: python
+    name: python2
     state: latest
+  when: ansible_distribution in ['MacOSX' ]
 
-- name: "Install needed python libraries"
-  pip:
-    name: "{{ item }}"
+- name: "Install latest python with apt"
+  apt:
+    name: python2
     state: latest
-  with_items:
-    - jenkinsapi
+  when: ansible_distribution in ['Debian', 'Ubuntu']
