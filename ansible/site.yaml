@@ -11,7 +11,7 @@
   - { role: puppet-tools, tags: [ 'puppet-tools' ] }
   - { role: python, tags: [ 'python' ] }
   - { role: ubuntu-gui-software, tags: [ 'ubuntu-gui-software' ] }
-  - { role: ubuntu-terminal-utilities, tags: [ 'ubuntu-terminal-utilities', 'ops-env' ] }
+  - { role: ubuntu-terminal-utilities, tags: [ 'ubuntu-terminal-utilities', 'ops-env' ], become: yes }
   - { role: vmware-fusion, tags: [ 'vmware-fusion' ] }
   vars:
     ansible_connection: local
