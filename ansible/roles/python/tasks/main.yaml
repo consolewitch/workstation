@@ -8,5 +8,8 @@
 - name: "Install latest python with apt"
   apt:
     name: python2
-    state: latest
+    state: "{{ item }}"
+  with_items:
+    - python2
+    - python-pip
   when: ansible_distribution in ['Debian', 'Ubuntu']

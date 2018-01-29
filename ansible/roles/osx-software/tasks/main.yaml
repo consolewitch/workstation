@@ -7,17 +7,25 @@
     - dhcpdump
     - git
     - jq
-    - links 
+    - links
     - nmap
     - screen
     - tmux
     - tree
     - wget
+    - telnet
+    - bzip2
+    - graphviz
+
+- Name: "Install a decent markdown viewer"
+  gem:
+    name: mdless
+    state: latest
 
 - name: "install GUI software"
   homebrew_cask:
-    name: "{{ item }}" 
-    state: installed 
+    name: "{{ item }}"
+    state: installed
   with_items:
     - firefox
     - karabiner-elements

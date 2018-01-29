@@ -1,0 +1,14 @@
+---
+- name: "Create working dir to install haskell stack"
+  tempfile:
+    state: directory
+  register: temp_dir
+
+- name: "Download Haskell stack script"
+  get_url:
+    url: https://get.haskellstack.org/
+    dest: "{{ temp_dir.path }}/install_haskell.sh"
+    mode: 0755
+
+- name: "Execute Haskell stack install script"
+  shell: "{{ temp_dir.path }}/install_haskell.sh"
