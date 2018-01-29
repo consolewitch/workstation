@@ -15,7 +15,6 @@
     create: yes
     state: present
     owner: "{{ ansible_user_id }}"
-    group: staff
     mode: 0644
 
 - name: "install the user's .vimrc"
@@ -23,7 +22,6 @@
     src: vimrc
     dest: "{{ ansible_env.HOME }}/.vimrc"
     owner: "{{ ansible_user_id }}"
-    group: staff
     mode: 0644
 
 - name: "create directories for vim temp files"
