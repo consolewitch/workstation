@@ -2,7 +2,7 @@
   gather_facts: true
   roles:
   - { role: docker, tags: [ 'docker' ] }
-  - { role: environment, tags: [ 'environment' ] }
+  - { role: environment, tags: [ 'environment', 'ops-env' ] }
   - { role: git, tags: [ 'git' ] }
   - { role: haskell, tags: [ 'haskell' ] }
   - { role: kubernetes, tags: [ 'kubernetes' ] }
