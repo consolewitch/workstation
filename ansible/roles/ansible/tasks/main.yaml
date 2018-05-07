@@ -1,10 +1,9 @@
 ---
 - name: "Install ansible with pip"
   pip:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - ansible
+    name: ansible
+    state: present
+    version: "{{ target_ansible_version }}"
 
 - name: "Install needed python libraries"
   pip:

@@ -26,3 +26,12 @@ export HISTFILE=~/.bash_eternal_history
 # Force prompt to write history after every command.
 # http://superuser.com/questions/20900/bash-history-loss
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+export JENKINS_API_USER="alex"
+export JENKINS_API_TOKEN=""
+export VCENTER_USERNAME=""
+export VCENTER_PASSWORD=''
+export GOVC_USERNAME="${VCENTER_USERNAME}"
+export GOVC_PASSWORD="${VCENTER_PASSWORD}"
+export GOVC_URL=""
+export GOVC_INSECURE=true

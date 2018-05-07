@@ -19,12 +19,21 @@ fi
 #################################################
 # install python and ansible
 #################################################
-if [ ! -f /usr/local/opt/python/libexec/bin/python ]; then brew install python; fi
-if [ $(which python) != "/usr/local/opt/python/libexec/bin/python" ]
+CURRENT_PYTHON_VERSION=$(python --version)
+STARTING_PYTHON_PATH=$(which python)
+if [ ! -f /usr/local/opt/python\@2/bin/python && "${STARTING_PYTHON_PATH}" != "/usr/local/opt/python@2/bin/python" ]
 then
-    export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+    brew uninstall python --force
+    brew install python@2
+    export PATH="/usr/local/opt/python\@2/bin:$PATH"
+    pip uninstall ansible
+    pip install ansible
 fi
-if [ ! -f /usr/local/bin/ansible ]; then pip install ansible; fi 
+if [ $(which python) != "/usr/local/opt/python@2/bin/python" ]
+then
+
+fi
+if [ ! -f /usr/local/bin/ansible ]; then pip install ansible; fi
 
 #################################################
 # configure osx settings
