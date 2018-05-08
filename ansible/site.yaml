@@ -1,17 +1,27 @@
 - hosts: local-workstation
   gather_facts: true
-  roles:
-  - { role: docker, tags: [ 'docker' ] }
-  - { role: environment, tags: [ 'environment', 'ops-env' ] }
-  - { role: git, tags: [ 'git' ] }
-  - { role: haskell, tags: [ 'haskell' ] }
-  - { role: kubernetes, tags: [ 'kubernetes' ] }
-  - { role: osx-software, tags: [ 'osx-software' ] }
-  - { role: packer-etc, tags: [ 'packer-etc', 'docker' ] }
-  - { role: puppet-tools, tags: [ 'puppet-tools' ] }
-  - { role: python, tags: [ 'python' ] }
-  - { role: ubuntu-gui-software, tags: [ 'ubuntu-gui-software' ] }
-  - { role: ubuntu-terminal-utilities, tags: [ 'ubuntu-terminal-utilities', 'ops-env' ], become: yes }
-  - { role: vmware-fusion, tags: [ 'vmware-fusion' ] }
-  vars:
-    ansible_connection: local
+  tasks:
+    - import_role:
+        name: "{{ item }}"
+      when: ansible_distribution == Ubuntu
+      with_items:
+      - environment
+
+    - import_role:
+        name: "{{ item }}"
+      when: ansible_distribution == MacOSX
+      with_items:
+      - docker
+      - environment
+      - git
+      - haskell
+      - kubernetes
+      - osx-software
+      - packer-etc
+      - puppet-tools
+      - python
+      - ubuntu-gui-software
+      - ubuntu-terminal-utilities
+      - vmware-fusion
+      vars:
+        ansible_connection: local

@@ -73,7 +73,7 @@ esac
 
 
 ### call ansible
-#export ANSIBLE_HOST_KEY_CHECKING=false
-#ansible-playbook -i "127.0.0.1," ../ansible/site.yaml -t ${TAGS} \
-#--extra-vars=" \
-#" $@
+export ANSIBLE_HOST_KEY_CHECKING=false
+ansible-playbook -i ./ansible/inventory -l provisioner ./ansible/site.yaml -t ${TAGS} \
+$@
+#--extra-vars="" \

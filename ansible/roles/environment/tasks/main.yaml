@@ -8,7 +8,7 @@
   copy: src=bashrc dest="{{ ansible_env.HOME }}/.bashrc-{{ ansible_user_id }}"
 
 - name: "link secondary bashrc to the main"
-  lineinfile: 
+  lineinfile:
     line: "[[ -r ~/.bashrc-{{ ansible_user_id }} ]] && source ~/.bashrc-{{ ansible_user_id }}"
     insertafter: EOF
     path: "{{ ansible_env.HOME }}/.bash_profile"
@@ -18,7 +18,7 @@
     mode: 0644
 
 - name: "install the user's .vimrc"
-  copy: 
+  copy:
     src: vimrc
     dest: "{{ ansible_env.HOME }}/.vimrc"
     owner: "{{ ansible_user_id }}"
@@ -26,7 +26,7 @@
 
 - name: "create directories for vim temp files"
   file: dest="{{ item }}" state=directory
-  with_items: 
+  with_items:
   - "{{ ansible_env.HOME }}/.vim/backup"
   - "{{ ansible_env.HOME }}/.vim/swap"
 
