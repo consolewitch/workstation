@@ -4,9 +4,11 @@
     name: user.email
     value: "{{ email_address }}"
     scope: global
+  become: false
 
 - name: "configure git user name"
   git_config:
     name: user.name
     value: "{{ full_name }}"
     scope: global
+  become: false

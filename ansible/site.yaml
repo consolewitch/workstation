@@ -9,6 +9,7 @@
       when: ansible_distribution == 'Ubuntu'
       with_items:
       - environment
+      - git
       - ubuntu-terminal-utilities
       - packer-etc
 

@@ -12,6 +12,8 @@ pushd="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 ### parse arguments
 USAGE="usage: prep.bash --option value [--option value...]\n \
 \nOptions:
+\t--email-address joe@smith.com\n \
+\t--full-name JOE SMITH\n \
 \t--host-os [win-ubuntu|osx|ubuntu]\n \
 \t--skip-host-config\n \
 \t--docker\n"
@@ -21,6 +23,14 @@ while [ "$1" != "" ]; do
         "--")
           shift 1
           break
+          ;;
+        "--full-name")
+          FULL_NAME=$2
+          shift 2
+          ;;
+        "--email-address")
+          EMAIL_ADDRESS=$2
+          shift 2
           ;;
         "--host-os")
           HOST_OS=$2
@@ -48,7 +58,9 @@ while [ "$1" != "" ]; do
 done
 
 ### check for required command line arguments.
-if [ -z "${HOST_OS}" ]
+if [ -z "${HOST_OS}" ] || \
+[ -z "${FULL_NAME}" ] || \
+[ -z "${EMAIL_ADDRESS}"]
 then
     echo "REQUIRED ARGUMENTS ARE MISSING"
     printf "${USAGE}"
@@ -75,6 +87,9 @@ esac
 ### call ansible
 export ANSIBLE_HOST_KEY_CHECKING=false
 ansible-playbook -i ./ansible/inventory -l provisioner ./ansible/site.yaml \
+--extra-vars=" \
+full_name=\"${FULL_NAME}\" \n
+email_address=\"${EMAIL_ADDRESS}\" \n
+" \
 $@
 # -t ${TAGS} \
-#--extra-vars="" \
