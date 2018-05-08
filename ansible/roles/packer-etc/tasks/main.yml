@@ -1,3 +1,3 @@
 ---
 - name: "select tasks based on OS"
-  include_tasks: "{{ansible_deployment}}.yaml"
+  include_tasks: "{{ansible_distribution}}.yaml"
