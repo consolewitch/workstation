@@ -2,7 +2,7 @@
 - name: "make sure we have zip installed"
   apt:
     name: unzip
-    state: installed
+    state: present
 
 - name: "Create packer folder in opt"
   file:
@@ -18,8 +18,13 @@
     dest: /opt/packer
     remote_src: yes
 
+- name: "Create packer working directory"
+  file:
+    path: "{{ ansible_env.HOME }}/.packer.d/plugins/packer-builder-vsphere"
+    state: directory
+
 - name: "add packer builder for vcenter"
   get_url:
     url: "https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v1.4/packer-builder-vsphere.linux"
-    dest: ~/.packer.d/plugins/packer-builder-vsphere
+    dest: "{{ ansible_env.HOME }}/.packer.d/plugins/packer-builder-vsphere"
     mode: 0755
