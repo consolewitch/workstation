@@ -1,8 +1,3 @@
 ---
-- name: "Include Ubuntu version of role"
-  include_tasks: ubuntu.yaml
-  when: ansible_deployment == 'Ubuntu'
-
-- name: "Include MacOSX version of role"
-  include_tasks: macosx.yaml
-  when: ansible_deployment == 'MacOSX'
+- name: "select tasks based on OS"
+  include_tasks: "{{ansible_deployment}}.yaml"
