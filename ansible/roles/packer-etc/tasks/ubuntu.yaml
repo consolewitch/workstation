@@ -1,4 +1,9 @@
 ---
+- name: "make sure we have zip installed"
+  apt:
+    name: unzip
+    state: installed
+
 - name: "Create packer folder in opt"
   file:
     path: /opt/packer

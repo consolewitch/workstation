@@ -1,8 +1,8 @@
 ---
 - name: "Include Ubuntu version of role"
-  include_playbook: ubuntu.yaml
+  include_tasks: ubuntu.yaml
   when: ansible_deployment == 'Ubuntu'
 
 - name: "Include MacOSX version of role"
-  include_playbook: macosx.yaml
+  include_tasks: macosx.yaml
   when: ansible_deployment == 'MacOSX'
