@@ -1,13 +1,8 @@
 ---
-- name: "Install packer"
-  homebrew:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - packer
+- name: "Include Ubuntu version of role"
+  include_playbook: ubuntu.yaml
+  when: ansible_deployment == 'Ubuntu'
 
-- name: "add packer builder for vcenter"
-  get_url:
-    url: "https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v1.4/packer-builder-vsphere.macos"
-    dest: ~/.packer.d/plugins/packer-builder-vsphere
-    mode: 0755
+- name: "Include MacOSX version of role"
+  include_playbook: macosx.yaml
+  when: ansible_deployment == 'MacOSX'

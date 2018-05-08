@@ -1,15 +1,19 @@
-- hosts: local-workstation
+- hosts: provisioner
   gather_facts: true
+  vars:
+    ansible_connection: local
   tasks:
-    - import_role:
+    - include_role:
         name: "{{ item }}"
-      when: ansible_distribution == Ubuntu
+      when: ansible_distribution == 'Ubuntu'
       with_items:
       - environment
+      - ubuntu-terminal-utilities
+      - packer-etc
 
-    - import_role:
+    - include_role:
         name: "{{ item }}"
-      when: ansible_distribution == MacOSX
+      when: ansible_distribution == 'MacOSX'
       with_items:
       - docker
       - environment
@@ -21,7 +25,5 @@
       - puppet-tools
       - python
       - ubuntu-gui-software
-      - ubuntu-terminal-utilities
+      #- ubuntu-terminal-utilities
       - vmware-fusion
-      vars:
-        ansible_connection: local

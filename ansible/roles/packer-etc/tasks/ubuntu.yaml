@@ -1,0 +1,20 @@
+---
+- name: "Create packer folder in opt"
+  file:
+    path: /opt/packer
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: "Install packer"
+  unarchive:
+    src: https://releases.hashicorp.com/packer/1.2.3/packer_1.2.3_linux_amd64.zip
+    dest: /opt/packer
+    remote_src: yes
+
+- name: "add packer builder for vcenter"
+  get_url:
+    url: "https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v1.4/packer-builder-vsphere.linux"
+    dest: ~/.packer.d/plugins/packer-builder-vsphere
+    mode: 0755
