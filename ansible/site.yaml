@@ -12,6 +12,8 @@
       - git
       - ubuntu-terminal-utilities
       - packer-etc
+      - ansible
+      #- ubuntu-terminal-utilities
 
     - include_role:
         name: "{{ item }}"
@@ -27,5 +29,4 @@
       - puppet-tools
       - python
       - ubuntu-gui-software
-      #- ubuntu-terminal-utilities
       - vmware-fusion

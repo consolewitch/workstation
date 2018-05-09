@@ -60,7 +60,7 @@ done
 ### check for required command line arguments.
 if [ -z "${HOST_OS}" ] || \
 [ -z "${FULL_NAME}" ] || \
-[ -z "${EMAIL_ADDRESS}"]
+[ -z "${EMAIL_ADDRESS}" ]
 then
     echo "REQUIRED ARGUMENTS ARE MISSING"
     printf "${USAGE}"

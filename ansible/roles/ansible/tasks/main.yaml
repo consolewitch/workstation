@@ -4,6 +4,7 @@
     name: ansible
     state: present
     version: "{{ target_ansible_version }}"
+  when: ansible_connection != "local"
 
 - name: "Install needed python libraries"
   pip:
