@@ -11,6 +11,7 @@
       - environment
       - git
       - ubuntu-terminal-utilities
+      - docker
       - packer-etc
       - ansible
       #- ubuntu-terminal-utilities

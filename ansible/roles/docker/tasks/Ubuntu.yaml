@@ -1,0 +1,53 @@
+---
+- name: "Remove extant dockers"
+  apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+  - docker
+  - docker-engine
+  - docker.io
+
+- name: "Create docker group"
+  group:
+    name: docker
+    state: present
+
+- name: "add users to docker group"
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: "docker"
+    append: yes
+
+- name: "Ensure existance of key-checking tools."
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: true
+  with_items:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - software-properties-common
+
+- name: "Add docker's GPG key to apt"
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+
+- name: "Add docker apt repo"
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
+    state: present
+    update_cache: yes
+
+- name: "Install Docker CE"
+  apt:
+    update_cache: true
+    name: "docker-ce=17.03.0*"
+    state: present
+
+- name: "Start Docker service"
+  service:
+    name: docker
+    state: restarted
