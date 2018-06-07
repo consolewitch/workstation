@@ -88,8 +88,8 @@ esac
 export ANSIBLE_HOST_KEY_CHECKING=false
 ansible-playbook -i ./ansible/inventory -l provisioner ./ansible/site.yaml \
 --extra-vars=" \
-full_name=\"${FULL_NAME}\" \n
-email_address=\"${EMAIL_ADDRESS}\" \n
+full_name=\"${FULL_NAME}\" \
+email_address=\"${EMAIL_ADDRESS}\" \
 " \
 $@
 # -t ${TAGS} \
