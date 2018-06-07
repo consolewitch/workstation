@@ -8,8 +8,11 @@
 
 - name: "Install needed python libraries"
   pip:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
     state: latest
   with_items:
-    - jenkinsapi
-    - pyvmomi
+    - { name: "jenkinsapi", version: "0.3.6" }
+    - { name: "pyvmomi", version: "6.7.0" }
+    - { name: "openshift", version: "0.5.0" }
+    - { name: "pyyaml", version: "3.12" }
