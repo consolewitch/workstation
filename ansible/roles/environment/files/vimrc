@@ -5,7 +5,7 @@ set number
 set paste
 
 " Set NPC analogues for set list
-set listchars=eol:╗,tab:>-,trail:█,extends:>,precedes:<
+set listchars=eol:¬,tab:>-,trail:█,extends:>,precedes:<
 
 " Deal with word wrapping
 set linebreak

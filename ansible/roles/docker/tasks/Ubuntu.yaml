@@ -18,6 +18,7 @@
     name: "{{ ansible_user_id }}"
     groups: "docker"
     append: yes
+  become: false
 
 - name: "Ensure existance of key-checking tools."
   apt:

@@ -1,11 +1,26 @@
 ---
+- name: "create directories"
+  file:
+    dest: "{{ item }}"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+  with_items:
+  - "{{ ansible_env.HOME }}/.vim/backup"
+  - "{{ ansible_env.HOME }}/.vim/swap"
+  - "{{ ansible_env.HOME }}/workspace"
+
 - name: "install ansible config file"
   copy:
     src: ansible.cfg
     dest: "{{ ansible_env.HOME }}/.ansible.cfg"
+    owner: "{{ ansible_user_id }}"
 
 - name: "install secondary bashrc"
-  copy: src=bashrc dest="{{ ansible_env.HOME }}/.bashrc-{{ ansible_user_id }}"
+  copy:
+    src: bashrc
+    dest: "{{ ansible_env.HOME }}/.bashrc-{{ ansible_user_id }}"
+    mode: 0755
+    owner: "{{ ansible_user_id }}"
 
 - name: "link secondary bashrc to the main"
   lineinfile:
@@ -15,7 +30,7 @@
     create: yes
     state: present
     owner: "{{ ansible_user_id }}"
-    mode: 0644
+    mode: 0755
 
 - name: "install the user's .vimrc"
   copy:
@@ -23,14 +38,3 @@
     dest: "{{ ansible_env.HOME }}/.vimrc"
     owner: "{{ ansible_user_id }}"
     mode: 0644
-
-- name: "create directories for vim temp files"
-  file: dest="{{ item }}" state=directory
-  with_items:
-  - "{{ ansible_env.HOME }}/.vim/backup"
-  - "{{ ansible_env.HOME }}/.vim/swap"
-
-- name: "Create working directory"
-  file: dest="{{ item }}" state=directory
-  with_items:
-  - "{{ ansible_env.HOME }}/workspace"

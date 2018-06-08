@@ -5,10 +5,14 @@
     ansible_connection: local
   tasks:
     - include_role:
+        name: environment
+      when: ansible_distribution == 'Ubuntu'
+      become: false
+
+    - include_role:
         name: "{{ item }}"
       when: ansible_distribution == 'Ubuntu'
       with_items:
-      - environment
       - git
       - ubuntu-terminal-utilities
       - docker

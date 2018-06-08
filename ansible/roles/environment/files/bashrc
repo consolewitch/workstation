@@ -28,9 +28,9 @@ export HISTFILE=~/.bash_eternal_history
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 export JENKINS_API_USER="alex"
-export JENKINS_API_TOKEN=""
-export VCENTER_USERNAME=""
-export VCENTER_PASSWORD=''
+export JENKINS_API_TOKEN="$(cat ~/.ssh/jenkins_api_token)"
+export VCENTER_USERNAME="$(cat ~/.ssh/vcenter_username)"
+export VCENTER_PASSWORD="$(cat ~/.ssh/vcenter_password)"
 export GOVC_USERNAME="${VCENTER_USERNAME}"
 export GOVC_PASSWORD="${VCENTER_PASSWORD}"
 export GOVC_URL=""
