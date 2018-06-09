@@ -11,7 +11,7 @@ export HISTSIZE=
 export HISTTIMEFORMAT="[%F %T] "
 
 # Add brew python to path
-export PATH="/usr/local/opt/python/libexec/bin:/opt/packer:$PATH"
+export PATH="/home/alex/bin:/home/alex/.local/bin:/usr/local/opt/python/libexec/bin:/opt/packer:$PATH"
 
 # Ignore commands that start with a space
 export HISTIGNORE=' *'
