@@ -37,7 +37,7 @@
 
 - name: "rename packer builder plugin"
   copy:
-    src: "{{ packer_temp.path }}/packer-builder-vsphere/packer-builder-vsphere.linux"
+    src: "{{ packer_temp.path }}/packer-builder-vsphere.linux"
     dest: "/home/{{ initiating_user }}/.packer.d/plugins/packer-builder-vsphere"
     remote_src: true
     mode: 0755
