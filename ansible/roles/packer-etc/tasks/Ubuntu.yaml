@@ -20,7 +20,7 @@
 
 - name: "Create packer working directory"
   file:
-    path: "/home/{{ initiating_user }}/.packer.d/plugins/packer-builder-vsphere"
+    path: "/home/{{ initiating_user }}/.packer.d/plugins"
     state: directory
     owner: "{{ initiating_user }}"
     group: "{{ initiating_user }}"
