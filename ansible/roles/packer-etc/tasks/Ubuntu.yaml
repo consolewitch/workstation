@@ -25,21 +25,21 @@
     owner: "{{ initiating_user }}"
     group: "{{ initiating_user }}"
 
-- name: "add packer builder for vcenter"
+- name: create temporary build directory
+  tempfile:
+    state: directory
+  register: packer_temp
+
+- name: "Add packer builder for vcenter"
   get_url:
     url: "https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v1.4/packer-builder-vsphere.linux"
-    dest: "/home/{{ initiating_user }}/.packer.d/plugins"
+    dest: "{{ packer_temp.path }}"
 
 - name: "rename packer builder plugin"
   copy:
-    src: "/home/{{ initiating_user }}/.packer.d/plugins/packer-builder-vsphere.linux"
+    src: "{{ packer_temp.path }}/packer-builder-vsphere/packer-builder-vsphere.linux"
     dest: "/home/{{ initiating_user }}/.packer.d/plugins/packer-builder-vsphere"
     remote_src: true
     mode: 0755
     owner: "{{ initiating_user }}"
     group: "{{ initiating_user }}"
-
-- name: "Remove origional file"
-  file:
-    path: "/home/{{ initiating_user }}/.packer.d/plugins/packer-builder-vsphere.linux"
-    state: absent
