@@ -3,38 +3,38 @@
   file:
     dest: "{{ item }}"
     state: directory
-    owner: "{{ ansible_user_id }}"
+    owner: "{{ initiating_user }}"
   with_items:
-  - "{{ ansible_env.HOME }}/.vim/backup"
-  - "{{ ansible_env.HOME }}/.vim/swap"
-  - "{{ ansible_env.HOME }}/workspace"
+  - "/home/{{ initiating_user }}/.vim/backup"
+  - "/home/{{ initiating_user }}/.vim/swap"
+  - "/home/{{ initiating_user }}/workspace"
 
 - name: "install ansible config file"
   copy:
     src: ansible.cfg
-    dest: "{{ ansible_env.HOME }}/.ansible.cfg"
-    owner: "{{ ansible_user_id }}"
+    dest: "/home/{{ initiating_user }}/.ansible.cfg"
+    owner: "{{ initiating_user }}"
 
 - name: "install secondary bashrc"
   copy:
     src: bashrc
-    dest: "{{ ansible_env.HOME }}/.bashrc-{{ ansible_user_id }}"
+    dest: "/home/{{ initiating_user }}/.bashrc-{{ initiating_user }}"
     mode: 0755
-    owner: "{{ ansible_user_id }}"
+    owner: "{{ initiating_user }}"
 
 - name: "link secondary bashrc to the main"
   lineinfile:
-    line: "[[ -r ~/.bashrc-{{ ansible_user_id }} ]] && source ~/.bashrc-{{ ansible_user_id }}"
+    line: "[[ -r /home/{{ initiating_user }}/.bashrc-{{ initiating_user }} ]] && source /home/{{ initiating_user }}/.bashrc-{{ initiating_user }}"
     insertafter: EOF
-    path: "{{ ansible_env.HOME }}/.bash_profile"
+    path: "/home/{{ initiating_user }}/.bash_profile"
     create: yes
     state: present
-    owner: "{{ ansible_user_id }}"
+    owner: "{{ initiating_user }}"
     mode: 0755
 
 - name: "install the user's .vimrc"
   copy:
     src: vimrc
-    dest: "{{ ansible_env.HOME }}/.vimrc"
-    owner: "{{ ansible_user_id }}"
+    dest: "/home/{{ initiating_user }}/.vimrc"
+    owner: "{{ initiating_user }}"
     mode: 0644

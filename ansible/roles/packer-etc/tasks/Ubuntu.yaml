@@ -20,11 +20,26 @@
 
 - name: "Create packer working directory"
   file:
-    path: "{{ ansible_env.HOME }}/.packer.d/plugins/packer-builder-vsphere"
+    path: "/home/{{ initiating_user }}/.packer.d/plugins/packer-builder-vsphere"
     state: directory
+    owner: "{{ initiating_user }}"
+    group: "{{ initiating_user }}"
 
 - name: "add packer builder for vcenter"
   get_url:
     url: "https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v1.4/packer-builder-vsphere.linux"
-    dest: "{{ ansible_env.HOME }}/.packer.d/plugins/packer-builder-vsphere"
+    dest: "/home/{{ initiating_user }}/.packer.d/plugins"
+
+- name: "rename packer builder plugin"
+  copy:
+    src: "/home/{{ initiating_user }}/.packer.d/plugins/packer-builder-vsphere.linux"
+    dest: "/home/{{ initiating_user }}/.packer.d/plugins/packer-builder-vsphere"
+    remote_src: true
     mode: 0755
+    owner: "{{ initiating_user }}"
+    group: "{{ initiating_user }}"
+
+- name: "Remove origional file"
+  file:
+    path: "/home/{{ initiating_user }}/.packer.d/plugins/packer-builder-vsphere.linux"
+    state: absent

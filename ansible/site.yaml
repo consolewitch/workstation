@@ -17,7 +17,7 @@
       - ubuntu-terminal-utilities
       - docker
       - packer-etc
-      - ansible
+      #- ansible
       #- ubuntu-terminal-utilities
 
     - include_role:

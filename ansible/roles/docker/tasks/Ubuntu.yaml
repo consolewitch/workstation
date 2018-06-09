@@ -3,10 +3,11 @@
   apt:
     name: "{{ item }}"
     state: absent
-  with_items:
+  loop:
   - docker
   - docker-engine
   - docker.io
+  - docker-ce
 
 - name: "Create docker group"
   group:
@@ -15,17 +16,16 @@
 
 - name: "add users to docker group"
   user:
-    name: "{{ ansible_user_id }}"
+    name: "{{ initiating_user }}"
     groups: "docker"
     append: yes
-  become: false
 
 - name: "Ensure existance of key-checking tools."
   apt:
     name: "{{ item }}"
     state: latest
     update_cache: true
-  with_items:
+  loop:
   - apt-transport-https
   - ca-certificates
   - curl

@@ -90,6 +90,7 @@ ansible-playbook -i ./ansible/inventory -l provisioner ./ansible/site.yaml \
 --extra-vars=" \
 full_name=\"${FULL_NAME}\" \
 email_address=\"${EMAIL_ADDRESS}\" \
+initiating_user=\"$USER\" \
 " \
 $@
 # -t ${TAGS} \
