@@ -12,4 +12,4 @@ sudo apt upgrade -y
 #################################################
 
 sudo apt install python python-pip -y
-if [ ! -f /usr/local/bin/ansible ]; then pip install ansible; fi
+if [ ! -f /usr/local/bin/ansible ]; then sudo pip install ansible; fi
