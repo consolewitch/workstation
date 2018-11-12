@@ -45,7 +45,7 @@
 - name: "Install Docker CE"
   apt:
     update_cache: true
-    name: "docker-ce=17.03.0*"
+    name: "docker-ce=18.06.1*"
     state: present
 
 - name: "Start Docker service"
