@@ -14,9 +14,8 @@ USAGE="usage: prep.bash --option value [--option value...]\n \
 \nOptions:
 \t--email-address joe@smith.com\n \
 \t--full-name JOE SMITH\n \
-\t--host-os [win-ubuntu|osx|ubuntu]\n \
-\t--skip-host-config\n \
-\t--docker\n"
+\t--host-os <win-ubuntu|osx|ubuntu|none>\n \
+\t--skip-host-config\n" 
 
 while [ "$1" != "" ]; do
     case "$1" in
@@ -38,10 +37,6 @@ while [ "$1" != "" ]; do
           ;;
         "--skip-host-config")
           SKIP_HOST_CONFIG=True
-          shift 1
-          ;;
-        "--docker")
-          BUILD_IN_DOCKER=True
           shift 1
           ;;
         "--help")
@@ -87,10 +82,9 @@ esac
 ### call ansible
 export ANSIBLE_HOST_KEY_CHECKING=false
 ansible-playbook -i ./ansible/inventory -l provisioner ./ansible/site.yaml \
---extra-vars=" \
-full_name=\"${FULL_NAME}\" \
+--extra-vars="full_name=\"${FULL_NAME}\" \
 email_address=\"${EMAIL_ADDRESS}\" \
-initiating_user=\"$USER\" \
+initiating_user=\"${USER}\" \
 " \
 $@
 # -t ${TAGS} \

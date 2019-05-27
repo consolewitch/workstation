@@ -6,13 +6,14 @@
   tasks:
     - include_role:
         name: environment
+        apply:
+          become: false
       when: ansible_distribution == 'Ubuntu'
-      become: false
 
     - include_role:
         name: "{{ item }}"
       when: ansible_distribution == 'Ubuntu'
-      with_items:
+      loop:
       - git
       - ubuntu-terminal-utilities
       - docker
@@ -23,7 +24,7 @@
     - include_role:
         name: "{{ item }}"
       when: ansible_distribution == 'MacOSX'
-      with_items:
+      loop:
       - docker
       - environment
       - git

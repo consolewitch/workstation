@@ -1,13 +1,14 @@
 ---
 - name: "Remove extant dockers"
   apt:
-    name: "{{ item }}"
+    name:
+      - docker
+      - docker-engine
+      - docker.io
+      - docker-ce
+      - containerd
+      - runc
     state: absent
-  loop:
-  - docker
-  - docker-engine
-  - docker.io
-  - docker-ce
 
 - name: "Create docker group"
   group:
@@ -22,14 +23,13 @@
 
 - name: "Ensure existance of key-checking tools."
   apt:
-    name: "{{ item }}"
+    name:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
     state: latest
     update_cache: true
-  loop:
-  - apt-transport-https
-  - ca-certificates
-  - curl
-  - software-properties-common
 
 - name: "Add docker's GPG key to apt"
   apt_key:
@@ -45,7 +45,7 @@
 - name: "Install Docker CE"
   apt:
     update_cache: true
-    name: "docker-ce=17.03.0*"
+    name: "docker-ce=18.06.3*"
     state: present
 
 - name: "Start Docker service"
